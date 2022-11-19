@@ -1,0 +1,3 @@
+/Users/andreas/Documents/MIUN/programmeringsmetodik/labborationer/labb1_anga2001/cmake-build-debug/CMakeFiles/labb1_anga2001.dir
+/Users/andreas/Documents/MIUN/programmeringsmetodik/labborationer/labb1_anga2001/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/andreas/Documents/MIUN/programmeringsmetodik/labborationer/labb1_anga2001/cmake-build-debug/CMakeFiles/rebuild_cache.dir
