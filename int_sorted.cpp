@@ -50,7 +50,6 @@ void int_sorted::print() const {
     for (const int* it = buffer.begin(); it != buffer.end(); it++) {
         std::cout << *it;
         if (it != LAST_ELEMENT ){ std::cout << ", "; }
-
         if (previous > *it){
             std::cout << "\t listan är ej sorterad!";
             break;

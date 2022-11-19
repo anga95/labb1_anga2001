@@ -18,7 +18,7 @@ int main() {
 //        s.insert(rand() % 100 + 1);
 //        s.print();
 //    }
-
+    std::cout << std::endl;
     std::vector<double> selSortVec;
     std::cout << "-----------------------\n";
     for (int i = 0; i < 5; i++) {
@@ -30,7 +30,7 @@ int main() {
         selectionSort(b1.begin(), b1.end());
         auto end = std::chrono::steady_clock::now();
         std::chrono::duration<double, std::milli> elapsed = (end-start);
-        std::cout << "selection:\t" << elapsed.count() << "ms\n";
+        std::cout << i <<". selection:\t" << elapsed.count() << "ms\n";
         selSortVec.push_back(elapsed.count());
     }
     double selSortAverage = std::accumulate(selSortVec.begin(), selSortVec.end(), 0.0) / selSortVec.size();
@@ -45,7 +45,7 @@ int main() {
         int_sorted sorted = sort(b1.begin(), b1.end());
         auto end = std::chrono::steady_clock::now();
         std::chrono::duration<double, std::milli> elapsed = (end-start);
-        std::cout << "martins:\t" << elapsed.count() << "ms\n";
+        std::cout<<i << ". martins:\t" << elapsed.count() << "ms\n";
         martinSortVec.push_back(elapsed.count());
     }
     double marSortAverage = std::accumulate(martinSortVec.begin(), martinSortVec.end(), 0.0) / martinSortVec.size();
