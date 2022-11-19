@@ -45,7 +45,7 @@ int main() {
         int_sorted sorted = sort(b1.begin(), b1.end());
         auto end = std::chrono::steady_clock::now();
         std::chrono::duration<double, std::milli> elapsed = (end-start);
-        std::cout<<i << ". martins:\t" << elapsed.count() << "ms\n";
+        std::cout<<i << ". Martins:\t" << elapsed.count() << "ms\n";
         martinSortVec.push_back(elapsed.count());
     }
     double marSortAverage = std::accumulate(martinSortVec.begin(), martinSortVec.end(), 0.0) / martinSortVec.size();
