@@ -25,18 +25,11 @@ public:
     int* end();
     const int* begin() const;
     const int* end() const;
-//    void resize(int size) {
-//        int_buffer old_copy = *this;
-//        int_buffer temp(size);
-//        *this = temp;
-//        for()
-//    }
 
 private:
     void swap(int_buffer& rhs);
     int* first;
     int* last;
-    //size_t length;
 };
 
 #endif //LABB1_ANGA2001_INT_BUFFER_H

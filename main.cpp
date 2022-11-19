@@ -2,15 +2,14 @@
 #include <stdlib.h>
 #include <ctime>
 #include <chrono>
-#include <utility>
 #include <vector>
 #include <numeric>
 #include "int_buffer.h"
 #include "int_sorted.h"
 int_sorted sort(const int *begin, const int *end);
-void selectionSort( int* first,  int* last);
-void f(int_buffer buf);
-void f1(int_sorted buf);
+void selectionSort(int* first,  int* last);
+//void f(int_buffer buf);
+//void f1(int_sorted buf);
 int main() {
     srand(time(NULL));
     //int_sorted s;
@@ -20,7 +19,7 @@ int main() {
 //        s.print();
 //    }
 
-    std::vector<double> ssVec;
+    std::vector<double> selSortVec;
     std::cout << "-----------------------\n";
     for (int i = 0; i < 5; i++) {
         int_buffer b1(40000);
@@ -32,11 +31,11 @@ int main() {
         auto end = std::chrono::steady_clock::now();
         std::chrono::duration<double, std::milli> elapsed = (end-start);
         std::cout << "selection:\t" << elapsed.count() << "ms\n";
-        ssVec.push_back(elapsed.count());
+        selSortVec.push_back(elapsed.count());
     }
-    double ssMedel = std::accumulate(ssVec.begin(),ssVec.end(),0.0) /ssVec.size();
+    double selSortAverage = std::accumulate(selSortVec.begin(), selSortVec.end(), 0.0) / selSortVec.size();
     std::cout << "-----------------------\n";
-    std::vector<double> martinSort;
+    std::vector<double> martinSortVec;
     for (int i = 0; i < 5; i++) {
         int_buffer b1(40000);
         for (int & randelement : b1) {
@@ -47,35 +46,25 @@ int main() {
         auto end = std::chrono::steady_clock::now();
         std::chrono::duration<double, std::milli> elapsed = (end-start);
         std::cout << "martins:\t" << elapsed.count() << "ms\n";
-        martinSort.push_back(elapsed.count());
+        martinSortVec.push_back(elapsed.count());
     }
-    double martinMedel = std::accumulate(martinSort.begin(),martinSort.end(),0.0) /martinSort.size();
+    double marSortAverage = std::accumulate(martinSortVec.begin(), martinSortVec.end(), 0.0) / martinSortVec.size();
     std::cout << "-----------------------\n";
-    std::cout << "-----tid martin medel:\t\t" << ssMedel << "ms\n";
-    std::cout << "-----tid selection medel:\t" << martinMedel << "ms\n";
-
-
-    //
-//    for (int & i : b1) {
-//        log(i);
-//    }
-
+    std::cout << "-----tid martin medel:\t\t" << selSortAverage << "ms\n";
+    std::cout << "-----tid selection medel:\t" << marSortAverage << "ms\n";
 
     return 0;
 }
 
-void f1(int_sorted buf){
-    //int_sorted buf2(buf.begin(), buf.size());
-    //buf2.insert(2);
+/*
+ * void f1(int_sorted buf){
     for (int i = 0; i < 10; i++) {
         buf.insert(rand() % 100 + 1);
     }
-//    for( const auto& e :  buf2 ){
-//        std::cout << e << "\t" << &e << "\n";
-//    }
-
 }
-void f(int_buffer buf){
+ */
+/*
+ * void f(int_buffer buf){
 
     std::cout << "add elements to buffer" << std::endl;
     for (int* i = buf.begin(); i != buf.end() ; i++){
@@ -98,6 +87,7 @@ void f(int_buffer buf){
     //const int_buffer buff = buf;
     //used to use "const..begin() or const..end()"
 }
+ */
 void selectionSort(int* first,  int* last){
     for(int* current = first; current < last - 1; current++){
         for(int* next = current + 1; next < last; next++) {
@@ -107,11 +97,6 @@ void selectionSort(int* first,  int* last){
                 *next = temp;
             }
         }
-       // std::swap(buf[*current], buf[*temp]);
-        //                first[min] = first[*j];
-//                const int *temp = current;
-//                current = min;
-//                min = temp;
     }
 }
 int_sorted sort(const int *begin, const int *end) {
@@ -121,19 +106,7 @@ int_sorted sort(const int *begin, const int *end) {
     if (begin == end-1){
         return int_sorted(begin,1);
     }
-    ptrdiff_t half = (end-begin)/2; //ptr diff type
+    ptrdiff_t half = (end-begin)/2;
     const int* mid = begin + half;
     return sort( begin , mid ).merge( sort(mid, end ) );
 }
-
-/*void selectionSort(int* first,  int* last){
-    for(int i = 0; i < std::distance(first, last); i++){
-        for(int j = i + 1; j < std::distance(first, last); j++) {
-            if (*(first + j) < *(first + i )) {
-                std::cout << first[i] << ":" << first[j] << std::endl;
-                int t = *(first + i);
-                *(first+i) = *(first + j);
-                *(first + j) = t;
-                std::cout << first[i] << ":" << first[j] << std::endl;
-            }
-        }*/

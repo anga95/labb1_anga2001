@@ -42,32 +42,21 @@ int_sorted int_sorted::merge(const int_sorted &merge_with) const {
     return c;
 }
 
-//void int_sorted::print() const {
-//    int previous = *buffer.begin();
-//    const int* LAST_ELEMENT = buffer.end() - 1;
-//
-//    std::cout << "size[" << buffer.size()<< "]   {";
-//    for (const int* it = buffer.begin(); it != buffer.end(); it++) {
-//        std::cout << *it;
-//        if (it != LAST_ELEMENT ){ std::cout << ", "; }
-//
-//        if (previous > *it){
-//            std::cout << "\t listan är ej sorterad!";
-//            break;
-//        }
-//        previous = *it;
-//    }
-//    std::cout << "}\n";
-//}
+void int_sorted::print() const {
+    int previous = *buffer.begin();
+    const int* LAST_ELEMENT = buffer.end() - 1;
 
+    std::cout << "size[" << buffer.size()<< "]   {";
+    for (const int* it = buffer.begin(); it != buffer.end(); it++) {
+        std::cout << *it;
+        if (it != LAST_ELEMENT ){ std::cout << ", "; }
 
-
-
-//    if (sz == buffer.size()){
-//        std::cout << "Buffer capacity has reached max limit [" << this->sz<< "/" << buffer.size() << "]. ";
-//        std::cout << "Capacity increase from " << buffer.size();
-//buffer = int_buffer(buffer.begin(), size());
-//        std::cout << " to "<< buffer.size() << std::endl;
-//    }
-
+        if (previous > *it){
+            std::cout << "\t listan är ej sorterad!";
+            break;
+        }
+        previous = *it;
+    }
+    std::cout << "}\n";
+}
 
