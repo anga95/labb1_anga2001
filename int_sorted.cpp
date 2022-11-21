@@ -6,16 +6,17 @@
 #include "int_sorted.h"
 #include <iostream>
 
-int_sorted::int_sorted(const int* source, size_t size)
-        : buffer(source, size) {
+int_sorted::int_sorted(const int* source, size_t size) {
     if (size > 1){
-        std::sort(buffer.begin(), buffer.end());
+        buffer = int_sorted::sort(source, source+size).buffer;
+    } else {
+        buffer = int_buffer(source, size);
     }
 }
 
 void int_sorted::insert(int value) {
     int_sorted temp2(&value, 1);
-    *this = merge(temp2);
+    buffer = merge(temp2).buffer;
 }
 
 const int *int_sorted::begin() const { return buffer.begin(); }
@@ -66,3 +67,14 @@ void int_sorted::print() const {
     std::cout << "}\n";
 }
 
+int_sorted int_sorted::sort(const int *begin, const int *end) {
+    if (begin == end){
+        return int_sorted(nullptr, 0);
+    }
+    if (begin == end-1){
+        return int_sorted(begin,1);
+    }
+    ptrdiff_t half = (end-begin)/2;
+    const int* mid = begin + half;
+    return sort( begin , mid ).merge( sort(mid, end ) );
+}

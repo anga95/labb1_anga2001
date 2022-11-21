@@ -5,7 +5,7 @@
 #include <numeric>
 #include "int_buffer.h"
 #include "int_sorted.h"
-int_sorted sort(const int *begin, const int *end);
+//int_sorted sort(const int *begin, const int *end);
 void selectionSort(int* first,  int* last);
 //void f(int_buffer buf);
 //void f1(int_sorted buf);
@@ -17,7 +17,7 @@ int main() {
 //    int_buffer b2(b);
 //    int_buffer b3 = std::move(b);
 //    srand(time(NULL));
-    int_sorted s;
+//    int_sorted s;
 //    s.print();
 //    for (int i = 0; i < 100; i++) {
 //        s.insert(rand() % 100 + 1);
@@ -39,7 +39,7 @@ int_buffer b(10);
     std::vector<double> selSortVec;
     std::cout << "-----------------------\n";
     for (int i = 0; i < 5; i++) {
-        int_buffer b1(400000);
+        int_buffer b1(40000);
         for (int & randelement : b1) {
             randelement = (rand() % 1000 + 1);
         }
@@ -54,12 +54,12 @@ int_buffer b(10);
     std::vector<double> sortVec;
     std::cout << "-----------------------\n";
     for (int i = 0; i < 5; i++) {
-        int_buffer b1(400000);
+        int_buffer b1(40000);
         for (int & randelement : b1) {
             randelement = (rand() % 1000 + 1);
         }
         auto start = std::chrono::steady_clock::now();
-        int_sorted sorted = sort(b1.begin(), b1.end());
+        int_sorted sorted(b1.begin(),b1.size());
         auto end = std::chrono::steady_clock::now();
         std::chrono::duration<double, std::milli> elapsed = (end-start);
         std::cout<<i+1 << ". Sort:\t" << elapsed.count() << "ms\n";
@@ -69,7 +69,7 @@ int_buffer b(10);
     std::vector<double> stdSortVec;
     std::cout << "-----------------------\n";
     for (int i = 0; i < 5; i++) {
-        int_buffer b1(400000);
+        int_buffer b1(40000);
         for (int & randelement : b1) {
             randelement = (rand() % 1000 + 1);
         }
@@ -105,17 +105,7 @@ void selectionSort(int* first,  int* last){
         }
     }
 }
-int_sorted sort(const int *begin, const int *end) {
-    if (begin == end){
-        return int_sorted(nullptr, 0);
-    }
-    if (begin == end-1){
-        return int_sorted(begin,1);
-    }
-    ptrdiff_t half = (end-begin)/2;
-    const int* mid = begin + half;
-    return sort( begin , mid ).merge( sort(mid, end ) );
-}
+
 /*
  * void f1(int_sorted buf){
     for (int i = 0; i < 10; i++) {
