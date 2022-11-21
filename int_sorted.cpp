@@ -7,7 +7,11 @@
 #include <iostream>
 
 int_sorted::int_sorted(const int* source, size_t size)
-        : buffer(source, size) {}
+        : buffer(source, size) {
+    if (size > 1){
+        std::sort(buffer.begin(), buffer.end());
+    }
+}
 
 void int_sorted::insert(int value) {
     int_sorted temp2(&value, 1);
@@ -19,27 +23,30 @@ const int *int_sorted::end() const { return buffer.begin() + buffer.size(); }
 size_t int_sorted::size() const { return buffer.size(); }
 
 int_sorted int_sorted::merge(const int_sorted &merge_with) const {
-    int_sorted c(buffer.begin(),buffer.size() + merge_with.size());
-    const int* a_ptr = this->begin();
+    int_buffer c(buffer.size() + merge_with.size());
+    const int* a_ptr = buffer.begin();
     const int* b_ptr = merge_with.begin();
-    size_t c_index = 0;
+    int* c_index = c.begin();
 
-    while (  a_ptr != this->end() && b_ptr != merge_with.end() ) {
+    while ( a_ptr != buffer.end() && b_ptr != merge_with.end()) {
         if (*a_ptr < *b_ptr){
-            c.buffer[c_index++] = *a_ptr++;
+            *c_index++ = *a_ptr++;
         }
         else{
-            c.buffer[c_index++] = *b_ptr++;
+            *c_index++ = *b_ptr++;
         }
     }
 
-    while(a_ptr != this->end()) {
-        c.buffer[c_index++] = *a_ptr++;
+    while(a_ptr != buffer.end()) {
+        *c_index++ = *a_ptr++;
     }
     while(b_ptr != merge_with.end()){
-        c.buffer[c_index++] = *b_ptr++;
+        *c_index++ = *b_ptr++;
     }
-    return c;
+
+    int_sorted merged;
+    merged.buffer = c;
+    return merged;
 }
 
 void int_sorted::print() const {

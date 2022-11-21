@@ -1,6 +1,5 @@
 #include <iostream>
-#include <stdlib.h>
-#include <ctime>
+#include <cstdlib>
 #include <chrono>
 #include <vector>
 #include <numeric>
@@ -10,24 +9,37 @@ int_sorted sort(const int *begin, const int *end);
 void selectionSort(int* first,  int* last);
 //void f(int_buffer buf);
 //void f1(int_sorted buf);
+//int_buffer generate();
+
 int main() {
 //    int_buffer b(10);
 //    int_buffer b1(b.begin(), b.size());
 //    int_buffer b2(b);
 //    int_buffer b3 = std::move(b);
 //    srand(time(NULL));
-//    int_sorted s;
+    int_sorted s;
 //    s.print();
 //    for (int i = 0; i < 100; i++) {
 //        s.insert(rand() % 100 + 1);
 //        s.print();
 //    }
-
+int_buffer b(10);
+    for (auto &item : b) {
+        item = (rand() % 100+1);
+    }
+    for (auto &item: b) {
+        log(item);
+    }
+    int_sorted sorted(b.begin(),b.size());
+    log("\n");
+    for (auto &e:sorted) {
+        log(e);
+    }
 
     std::vector<double> selSortVec;
     std::cout << "-----------------------\n";
     for (int i = 0; i < 5; i++) {
-        int_buffer b1(40000);
+        int_buffer b1(400000);
         for (int & randelement : b1) {
             randelement = (rand() % 1000 + 1);
         }
@@ -42,7 +54,7 @@ int main() {
     std::vector<double> sortVec;
     std::cout << "-----------------------\n";
     for (int i = 0; i < 5; i++) {
-        int_buffer b1(40000);
+        int_buffer b1(400000);
         for (int & randelement : b1) {
             randelement = (rand() % 1000 + 1);
         }
@@ -57,7 +69,7 @@ int main() {
     std::vector<double> stdSortVec;
     std::cout << "-----------------------\n";
     for (int i = 0; i < 5; i++) {
-        int_buffer b1(40000);
+        int_buffer b1(400000);
         for (int & randelement : b1) {
             randelement = (rand() % 1000 + 1);
         }
@@ -65,7 +77,7 @@ int main() {
         std::sort(b1.begin(),b1.end());
         auto end = std::chrono::steady_clock::now();
         std::chrono::duration<double, std::milli> elapsed = (end-start);
-        std::cout<<i+1 << ". std::sort:\t" <<" "<<elapsed.count() << "ms\n";
+        std::cout<<i+1 << ". std::sort:\t" << elapsed.count() << "ms\n";
         stdSortVec.push_back(elapsed.count());
     }
     double selSortAverage = std::accumulate(selSortVec.begin(), selSortVec.end(),

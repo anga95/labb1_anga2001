@@ -44,11 +44,11 @@ int_buffer &int_buffer::operator=(int_buffer &&rhs) {
 }
 
 int &int_buffer::operator[](size_t index) {
-    return *(begin() + index);
+    return first[index];
 }
 
 const int &int_buffer::operator[](size_t index) const {
-    return *(begin() + index);
+    return first[index];
 }
 
 int *int_buffer::begin() { return first; }
