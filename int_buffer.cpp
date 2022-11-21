@@ -15,13 +15,10 @@ int_buffer::int_buffer(const int *source, size_t size)
     std::copy(source, source+size, target);
     //log("buffer: 2-arg CTR");
 }
-
 int_buffer::int_buffer(const int_buffer &rhs)
     : int_buffer(rhs.first, rhs.size()) {
   // log("buffer: copy CTR");
 }
-
-//move constructor
 int_buffer::int_buffer(int_buffer &&rhs)
     : first(nullptr), last(nullptr) {
     swap(rhs);
