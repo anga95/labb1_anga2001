@@ -8,7 +8,7 @@
 #include "int_sorted.h"
 int_sorted sort(const int *begin, const int *end);
 void selectionSort(int* first,  int* last);
-void f(int_buffer buf);
+//void f(int_buffer buf);
 //void f1(int_sorted buf);
 int main() {
 //    int_buffer b(10);
@@ -35,7 +35,7 @@ int main() {
         selectionSort(b1.begin(), b1.end());
         auto end = std::chrono::steady_clock::now();
         std::chrono::duration<double, std::milli> elapsed = (end-start);
-        std::cout << i <<". SelectionSort:\t" << elapsed.count() << "ms\n";
+        std::cout << i+1 <<". SelectionSort:\t" << elapsed.count() << "ms\n";
         selSortVec.push_back(elapsed.count());
     }
 
@@ -50,7 +50,7 @@ int main() {
         int_sorted sorted = sort(b1.begin(), b1.end());
         auto end = std::chrono::steady_clock::now();
         std::chrono::duration<double, std::milli> elapsed = (end-start);
-        std::cout<<i << ". Sort:\t" << elapsed.count() << "ms\n";
+        std::cout<<i+1 << ". Sort:\t" << elapsed.count() << "ms\n";
         sortVec.push_back(elapsed.count());
     }
 
@@ -65,16 +65,19 @@ int main() {
         std::sort(b1.begin(),b1.end());
         auto end = std::chrono::steady_clock::now();
         std::chrono::duration<double, std::milli> elapsed = (end-start);
-        std::cout<<i << ". std::sort:\t" << elapsed.count() << "ms\n";
+        std::cout<<i+1 << ". std::sort:\t" <<" "<<elapsed.count() << "ms\n";
         stdSortVec.push_back(elapsed.count());
     }
-    double selSortAverage = std::accumulate(selSortVec.begin(), selSortVec.end(), 0.0) / selSortVec.size();
-    double sortAverage = std::accumulate(sortVec.begin(), sortVec.end(), 0.0) / sortVec.size();
-    double stdSortAverage = std::accumulate(stdSortVec.begin(), stdSortVec.end(), 0.0) / stdSortVec.size();
+    double selSortAverage = std::accumulate(selSortVec.begin(), selSortVec.end(),
+                                            0.0) / selSortVec.size();
+    double sortAverage = std::accumulate(sortVec.begin(), sortVec.end(),
+                                         0.0) / sortVec.size();
+    double stdSortAverage = std::accumulate(stdSortVec.begin(), stdSortVec.end(),
+                                            0.0) / stdSortVec.size();
     std::cout << "-----------------------\n";
-    std::cout << "-----tid selectionSort() medel:\t\t" << selSortAverage << "ms\n";
-    std::cout << "-----tid sort() medel:\t" << sortAverage << "ms\n";
-    std::cout << "-----tid std::sort() medel:\t" << stdSortAverage << "ms\n";
+    std::cout << "selectionSort() medel:\t" << selSortAverage << "ms\n";
+    std::cout << "sort() medel:\t\t\t" << sortAverage << "ms\n";
+    std::cout << "std::sort() medel:\t\t" << stdSortAverage << "ms\n";
     std::cout << "-----------------------\n";
 
     return 0;

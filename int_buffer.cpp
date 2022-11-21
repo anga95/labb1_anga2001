@@ -5,7 +5,8 @@
 #include "int_buffer.h"
 #include <algorithm>
 
-int_buffer::int_buffer(size_t size) : first(new int[size]), last(first + size){
+int_buffer::int_buffer(size_t size)
+    : first(new int[size]), last(first + size){
     //log("buffer: 1-arg CTR");
 }
 
