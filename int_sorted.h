@@ -19,7 +19,8 @@ public:
     const int* end() const;
     int_sorted merge(const int_sorted& merge_with) const;
     void print() const;
-    int_sorted sort(const int *begin, const int *end);
+    //[[nodiscard]]
+    //int_sorted sort(const int *begin, const int *end);
 private:
     int_buffer buffer = int_buffer(0);
 };

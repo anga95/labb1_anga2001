@@ -23,23 +23,23 @@ int main() {
 //        s.insert(rand() % 100 + 1);
 //        s.print();
 //    }
-int_buffer b(10);
-    for (auto &item : b) {
-        item = (rand() % 100+1);
-    }
-    for (auto &item: b) {
-        log(item);
-    }
-    int_sorted sorted(b.begin(),b.size());
-    log("\n");
-    for (auto &e:sorted) {
-        log(e);
-    }
+//int_buffer b(10);
+//    for (auto &item : b) {
+//        item = (rand() % 100+1);
+//    }
+//    for (auto &item: b) {
+//        log(item);
+//    }
+//    int_sorted sorted(b.begin(),b.size());
+//    log("\n");
+//    for (auto &e:sorted) {
+//        log(e);
+//    }
 
     std::vector<double> selSortVec;
     std::cout << "-----------------------\n";
     for (int i = 0; i < 5; i++) {
-        int_buffer b1(40000);
+        int_buffer b1(400000);
         for (int & randelement : b1) {
             randelement = (rand() % 1000 + 1);
         }
@@ -54,7 +54,7 @@ int_buffer b(10);
     std::vector<double> sortVec;
     std::cout << "-----------------------\n";
     for (int i = 0; i < 5; i++) {
-        int_buffer b1(40000);
+        int_buffer b1(400000);
         for (int & randelement : b1) {
             randelement = (rand() % 1000 + 1);
         }
@@ -69,7 +69,7 @@ int_buffer b(10);
     std::vector<double> stdSortVec;
     std::cout << "-----------------------\n";
     for (int i = 0; i < 5; i++) {
-        int_buffer b1(40000);
+        int_buffer b1(400000);
         for (int & randelement : b1) {
             randelement = (rand() % 1000 + 1);
         }
